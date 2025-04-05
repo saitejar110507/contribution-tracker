@@ -2,21 +2,21 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Runs daily at midnight UTC
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '0 4 * * *'  # Runs every day at 4 AM UTC (adjust as needed)
+  workflow_dispatch:  # Optional manual trigger
 
 jobs:
-  commit:
+  auto-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
       - name: Make a Commit
         run: |
-          date >> daily_update.txt
-          git config --global user.name "Your Name"
-          git config --global user.email "your-email@example.com"
-          git add daily_update.txt
-          git commit -m "Automated commit: $(date)"
+          echo "Last commit: $(date)" >> update.txt
+          git config --global user.name "saitejar110507"
+          git config --global user.email "rachamallasaiteja2005@gmail.com"
+          git add update.txt
+          git commit -m "Automated commit on $(date)"
           git push
